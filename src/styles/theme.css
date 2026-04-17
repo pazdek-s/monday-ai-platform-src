@@ -1,0 +1,270 @@
+/* Import Google Fonts */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* The default font size for the application */
+  --font-size: 16px;
+  
+  /* Typography variables */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ── Monday.com design system colour tokens ── */
+
+  /* Primary actions */
+  --primary-color: #0073EA;
+  --primary-hover-color: #0060C0;
+  --primary-active-color: #004FA3;
+
+  /* Backgrounds */
+  --primary-background-color: #FFFFFF;
+  --secondary-background-color: #FFFFFF;
+  --primary-background-hover-color: rgba(103, 104, 121, 0.1);
+  --primary-surface-color: #EDF1FC;
+  --preview-background-color: #F0F2F8;
+  --nav-active-bg: rgba(204, 228, 255, 0.6);
+
+  /* Text */
+  --primary-text-color: #323338;
+  --secondary-text-color: #676879;
+  --placeholder-color: #676879;
+  --text-color-on-inverted: #FFFFFF;
+  --fixed-light-color: #FFFFFF;
+  --disabled-text-color: rgba(50, 51, 56, 0.38);
+
+  /* Borders */
+  --ui-border-color: #C3C6D4;
+  --layout-border-color: #D0D4E4;
+  --ui-background-color: #E7E9EF;
+
+  /* Semantic */
+  --disabled-background-color: #ECEDF5;
+
+  /* Brand */
+  --brand-red: #FB275D;
+  --brand-yellow: #FFCC00;
+  --brand-green: #00CA72;
+
+  /* Links & accents */
+  --link-color: #1F76C2;
+  --ai-purple: #8181FF;
+
+  /* Agent avatars */
+  --agent-green: #00C875;
+  --agent-orange: #E44B23;
+  --agent-purple: #784BD1;
+
+  /* Board group accents */
+  --board-screening: #E44B23;
+  --board-interviews: #0073EA;
+  --board-contract: #E2445C;
+
+  /* Spacing scale */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Border radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-xl: 16px;
+
+  /* ── Tailwind-compatible semantic tokens ── */
+
+  /* The default background color for the application. */
+  --background: rgba(255, 255, 255, 1.00);
+  /* The default color for elements or text that appears on top of the background. */
+  --foreground: rgba(50, 51, 56, 1.00);
+  /* The background color for cards, modals, and other containers. */
+  --card: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of cards, modals and other background containers. */
+  --card-foreground: rgba(50, 51, 56, 1.00);
+  /* The background color for dropdowns and tooltips. */
+  --popover: rgba(255, 255, 255, 1.00);
+  /* The default color for text or elements that appear on top of dropdowns and tooltips. */
+  --popover-foreground: rgba(50, 51, 56, 1.00);
+  /* The primary color used for buttons, links, and other interactive elements. */
+  --primary: rgba(0, 115, 234, 1.00);
+  /* The default color for text or elements that appear on top of primary colored elements. */
+  --primary-foreground: rgba(255, 255, 255, 1.00);
+  /* The secondary color used for secondary(but NOT-DESTRUCTIVE) buttons and interactive elements. */
+  --secondary: rgba(236, 239, 248, 1.00);
+  /* The default color for text or elements that appear on top of secondary colored elements. */
+  --secondary-foreground: rgba(50, 51, 56, 1.00);
+  /* The muted color used for less prominent elements, such as disabled buttons or disabled text. */
+  --muted: rgba(236, 237, 245, 1.00);
+  /* The default color for text or elements that appear on top of muted colored elements. */
+  --muted-foreground: rgba(103, 104, 121, 1.00);
+  /* The accent color used for highlights, links, and other interactive elements. */
+  --accent: rgba(204, 228, 255, 1.00);
+  /* The default color for text or elements that appear on top of accent colored elements. */
+  --accent-foreground: rgba(50, 51, 56, 1.00);
+  /* The color used for background in destructive actions, such as delete buttons or error messages. */
+  --destructive: rgba(216, 58, 82, 1.00);
+  /* The default color for text or elements that appear on top of destructive colored elements. */
+  --destructive-foreground: rgba(255, 255, 255, 1.00);
+  /* The default border color for elements such as inputs, buttons, and other containers. */
+  --border: rgba(195, 198, 212, 1.00);
+  /* The default background color for input fields once the text has been filled. */
+  --input: rgba(255, 255, 255, 1.00);
+  /* The default background color for input fields, text areas, and other input elements. */
+  --input-background: rgba(255, 255, 255, 1.00);
+  /* The color for focus rings, outlines, and other focus indicators. */
+  --ring: rgba(0, 115, 234, 1.00);
+  /* Shadow for small elevations, such as cards or modals. */
+  --elevation-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+  --chart-1: rgba(0, 115, 234, 1.00);
+  --chart-2: rgba(0, 133, 77, 1.00);
+  --chart-3: rgba(255, 203, 0, 1.00);
+  --chart-4: rgba(216, 58, 82, 1.00);
+  --chart-5: rgba(163, 88, 223, 1.00);
+  /* The default border radius for elements such as buttons, tooltip, and other containers. */
+  --radius: 4px;
+  /* The background color for sidebars, navigation menus, and other persistent elements. */
+  --sidebar: rgba(246, 247, 251, 1.00);
+  --sidebar-foreground: rgba(50, 51, 56, 1.00);
+  --sidebar-primary: rgba(0, 115, 234, 1.00);
+  --sidebar-primary-foreground: rgba(255, 255, 255, 1.00);
+  --sidebar-accent: rgba(204, 228, 255, 1.00);
+  --sidebar-accent-foreground: rgba(50, 51, 56, 1.00);
+  --sidebar-border: rgba(208, 212, 228, 1.00);
+  --sidebar-ring: rgba(0, 115, 234, 1.00);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --elevation-sm: var(--elevation-sm);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.5;
+}
+
+p {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+span {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+label {
+  font-family: 'Figtree', sans-serif;
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+button {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+input {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+html {
+  font-size: var(--font-size);
+  font-family: 'Figtree', sans-serif;
+}
