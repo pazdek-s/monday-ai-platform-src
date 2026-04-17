@@ -2739,7 +2739,7 @@ function SidekickPanel({ onClose }: { onClose: () => void }) {
 ───────────────────────────────────────────── */
 export function RecruitmentBoardPage() {
   const [searchParams] = useSearchParams();
-  const fromTransition = searchParams.get('sidekick') === 'open';
+  const fromTransition = searchParams.get('fromTransition') === 'true';
   const [sidekickOpen, setSidekickOpen] = useState(false);
   const [activatedAgents] = useState<string[]>([]);
   const [justActivated] = useState(false);
@@ -2754,10 +2754,27 @@ export function RecruitmentBoardPage() {
   const [showChatDot, setShowChatDot] = useState(false);
   const [updatePanelOpen, setUpdatePanelOpen] = useState(false);
 
+  // Build-phase covers: start hidden (already revealed) unless arriving from transition
+  const [boardRevealed,   setBoardRevealed]   = useState(!fromTransition);
+  const [sidebarRevealed, setSidebarRevealed] = useState(!fromTransition);
+  const [navRevealed,     setNavRevealed]     = useState(!fromTransition);
+  const [headerRevealed,  setHeaderRevealed]  = useState(!fromTransition);
+
+  // When arriving from the transition screen, run the build-up then open the sidekick
   useEffect(() => {
-    const delay = fromTransition ? 600 : 800;
-    const t = setTimeout(() => setSidekickOpen(true), delay);
-    return () => clearTimeout(t);
+    if (!fromTransition) {
+      // Regular /new visit: just open sidekick after a short delay
+      const t = setTimeout(() => setSidekickOpen(true), 800);
+      return () => clearTimeout(t);
+    }
+    const ts: ReturnType<typeof setTimeout>[] = [];
+    const at = (ms: number, fn: () => void) => ts.push(setTimeout(fn, ms));
+    at(300,  () => setBoardRevealed(true));
+    at(1800, () => setSidebarRevealed(true));
+    at(3200, () => setNavRevealed(true));
+    at(4500, () => setHeaderRevealed(true));
+    at(5700, () => setSidekickOpen(true));
+    return () => ts.forEach(clearTimeout);
   }, [fromTransition]);
 
   const ownerInteraction: OwnerInteractionProps = {
@@ -2848,6 +2865,36 @@ export function RecruitmentBoardPage() {
           <UpdatePanel key="update-panel" onClose={() => setUpdatePanelOpen(false)} />
         )}
       </AnimatePresence>
+
+      {/* Build-phase covers: reveal board → sidebar → nav → header */}
+      {fromTransition && (
+        <>
+          <motion.div
+            style={{ position: 'fixed', zIndex: 300, background: '#fff', pointerEvents: 'none', top: 56, left: 292, right: 0, bottom: 0 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: boardRevealed ? 0 : 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          />
+          <motion.div
+            style={{ position: 'fixed', zIndex: 300, background: '#fff', pointerEvents: 'none', top: 56, left: 64, width: 228, bottom: 0 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: sidebarRevealed ? 0 : 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          />
+          <motion.div
+            style={{ position: 'fixed', zIndex: 300, background: '#fff', pointerEvents: 'none', top: 56, left: 0, width: 64, bottom: 0 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: navRevealed ? 0 : 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          />
+          <motion.div
+            style={{ position: 'fixed', zIndex: 300, background: '#fff', pointerEvents: 'none', top: 0, left: 0, right: 0, height: 56 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: headerRevealed ? 0 : 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          />
+        </>
+      )}
     </motion.div>
   );
 }
